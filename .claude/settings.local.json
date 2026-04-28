@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_design_context",
+      "Bash(mkdir -p /Users/Diana/Desktop/подписайт/assets/images)",
+      "Bash(mkdir -p /Users/Diana/Desktop/подписайт/assets/icons)",
+      "Bash(mkdir -p /Users/Diana/Desktop/подписайт/styles)",
+      "Bash(node serve.mjs)",
+      "Bash(node *)",
+      "Bash(npx puppeteer *)",
+      "Bash(NODE_PATH=/Users/Diana/Desktop/rare/node_modules node screenshot.mjs http://localhost:3000)"
+    ]
+  }
+}
