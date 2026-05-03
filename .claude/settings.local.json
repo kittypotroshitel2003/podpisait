@@ -8,7 +8,9 @@
       "Bash(node serve.mjs)",
       "Bash(node *)",
       "Bash(npx puppeteer *)",
-      "Bash(NODE_PATH=/Users/Diana/Desktop/rare/node_modules node screenshot.mjs http://localhost:3000)"
+      "Bash(NODE_PATH=/Users/Diana/Desktop/rare/node_modules node screenshot.mjs http://localhost:3000)",
+      "mcp__plugin_figma_figma__get_metadata",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
