@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Наши кейсы — Подписайт</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .cp-section {
+      padding: 64px 0 80px;
+    }
+    .cp-inner {
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .cp-title {
+      font-size: 64px;
+      font-weight: 800;
+      color: #262626;
+      letter-spacing: -1.92px;
+      line-height: 1;
+      margin-bottom: 48px;
+    }
+    .cp-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px 12px;
+    }
+    .cp-card {
+      width: calc(50% - 6px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .cp-img {
+      background: #f5f6fa;
+      height: 500px;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .cp-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s cubic-bezier(.22,1,.36,1);
+      transform-origin: center;
+    }
+    .cp-card:hover .cp-img img { transform: scale(1.2); }
+    .cp-card-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #222326;
+      letter-spacing: -0.84px;
+      line-height: 1;
+      margin: 0;
+    }
+    .cp-card-type {
+      font-size: 18px;
+      font-weight: 500;
+      color: #828899;
+      letter-spacing: -0.54px;
+      line-height: 1;
+      margin: 10px 0 0;
+    }
+
+    /* CTA */
+    .cp-cta-wrap {
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+    }
+    .cp-cta-card {
+      background: linear-gradient(-64.79deg, #FFEBE0 0%, #FBE5FF 50%, #F1EBFF 75%);
+      border-radius: 32px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+    }
+    .cp-cta-title {
+      font-size: 64px;
+      font-weight: 800;
+      color: #262626;
+      letter-spacing: -1.92px;
+      line-height: 1;
+      text-align: center;
+      max-width: 1004px;
+      margin: 0;
+    }
+    .cp-form-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      width: 553px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    .cp-form-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #262626;
+      letter-spacing: -0.84px;
+      text-align: center;
+      max-width: 473px;
+      line-height: 1;
+      margin: 0;
+    }
+    .cp-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+    .cp-field {
+      background: #f5f6fa;
+      border-radius: 8px;
+      padding: 14px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cp-field label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #acafbf;
+      letter-spacing: -0.42px;
+      line-height: 16px;
+      display: block;
+    }
+    .cp-field input,
+    .cp-field textarea {
+      font-size: 18px;
+      font-weight: 600;
+      color: #737580;
+      letter-spacing: -0.54px;
+      line-height: 23px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Manrope', sans-serif;
+      width: 100%;
+      resize: none;
+    }
+    .cp-field textarea { min-height: 46px; }
+    .cp-privacy {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0,0,0,0.4);
+      text-align: center;
+      letter-spacing: -0.42px;
+      line-height: 18px;
+      margin: 0;
+    }
+    .cp-btn {
+      background: #8249f2;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.54px;
+      border: none;
+      border-radius: 100px;
+      padding: 23px 33px;
+      width: 489px;
+      cursor: pointer;
+      line-height: 1;
+      font-family: 'Manrope', sans-serif;
+      transition: opacity .2s;
+    }
+    .cp-btn:hover { opacity: .88; }
+
+    @media (max-width: 768px) {
+      .cp-section { padding: 24px 0 40px; }
+      .cp-inner { padding: 0 16px; }
+      .cp-title { font-size: 36px; letter-spacing: -1.08px; margin-bottom: 24px; }
+      .cp-grid { gap: 32px; }
+      .cp-card { width: 100%; gap: 16px; }
+      .cp-img { height: 220px; border-radius: 16px; }
+      .cp-card-title { font-size: 18px; letter-spacing: -0.54px; }
+      .cp-card-type { font-size: 14px; margin: 6px 0 0; }
+
+      .cp-cta-wrap { padding: 0 8px 40px; }
+      .cp-cta-card { border-radius: 24px; padding: 32px 16px; gap: 24px; }
+      .cp-cta-title { font-size: 28px; letter-spacing: -0.84px; }
+      .cp-form-card { width: 100%; padding: 24px 16px; gap: 20px; }
+      .cp-form-title { font-size: 20px; }
+      .cp-btn { width: 100%; font-size: 16px; padding: 18px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="header">
+  <div class="header-inner">
+    <a class="header-logo" href="index.html"><img src="assets/icons/logo-header.png" alt="Подписайт"></a>
+
+    <nav class="header-nav">
+      <a href="index.html#why">выгода</a>
+      <a href="index.html#plans">тарифы</a>
+      <a href="index.html#sale">акции</a>
+      <a href="index.html#faq">вопросы</a>
+      <a href="cases.html" style="color:var(--purple);">кейсы</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn-contact" href="tel:+79876543210">
+        <span class="btn-contact-text">Связаться</span>
+        <span class="btn-contact-phone-wrap">
+          <img class="icon" src="assets/icons/calling.png" alt="">
+        </span>
+      </a>
+      <a class="btn-login" href="#">Войти</a>
+      <button class="header-burger" id="headerBurger" aria-label="Меню" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-nav-group">
+      <p class="mobile-menu-label">навигация</p>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-links">
+        <a href="index.html#why" onclick="closeMobileMenu()">выгода</a>
+        <a href="index.html#plans" onclick="closeMobileMenu()">тарифы</a>
+        <a href="index.html#sale" onclick="closeMobileMenu()">акции</a>
+        <a href="index.html#faq" onclick="closeMobileMenu()">вопросы</a>
+        <a href="cases.html" style="color:var(--purple);" onclick="closeMobileMenu()">кейсы</a>
+      </div>
+    </div>
+    <div class="mobile-menu-contact-group">
+      <p class="mobile-menu-label">связаться</p>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-links">
+        <a href="tel:+79876543210">8 (987) 654-32-10</a>
+        <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('headerBurger');
+  const open = menu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('headerBurger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+
+<!-- ═══════════ CASES ═══════════ -->
+<section class="cp-section">
+  <div class="cp-inner">
+    <h1 class="cp-title">Наши кейсы</h1>
+    <div class="cp-grid">
+
+      <div class="cp-card">
+        <div class="cp-img"><img src="assets/images/case-evergreen.png" alt="Evergreen"></div>
+        <div>
+          <p class="cp-card-title">Салон искусственных растений Evergreen</p>
+          <p class="cp-card-type">Декор интерьера ・ Корпоративный сайт</p>
+        </div>
+      </div>
+
+      <div class="cp-card">
+        <div class="cp-img"><img src="assets/images/case-demokrat.png" alt="Demokrat"></div>
+        <div>
+          <p class="cp-card-title">Стоматология Demokrat</p>
+          <p class="cp-card-type">Медицина ・ Корпоративный сайт</p>
+        </div>
+      </div>
+
+      <div class="cp-card">
+        <div class="cp-img"><img src="assets/images/case-gaudi.png" alt="Гауди риелт"></div>
+        <div>
+          <p class="cp-card-title">Агентство недвижимости Гауди риелт</p>
+          <p class="cp-card-type">Недвижимость ・ Корпоративный сайт</p>
+        </div>
+      </div>
+
+      <div class="cp-card">
+        <div class="cp-img"><img src="assets/images/case-rare.png" alt="RA|RÉ"></div>
+        <div>
+          <p class="cp-card-title">Клиника экспертной косметологии RA | RÉ</p>
+          <p class="cp-card-type">Бьюти ・ Корпоративный сайт</p>
+        </div>
+      </div>
+
+      <div class="cp-card">
+        <div class="cp-img"><img src="assets/images/case-kristalica.png" alt="Кристалица"></div>
+        <div>
+          <p class="cp-card-title">Натуральная питьевая вода Кристалица</p>
+          <p class="cp-card-type">Ритейл ・ Корпоративный сайт</p>
+        </div>
+      </div>
+
+      <div class="cp-card">
+        <div class="cp-img"><img src="assets/images/case-prive7.png" alt="Prive7"></div>
+        <div>
+          <p class="cp-card-title">Салон красоты премиум-класса Prive7</p>
+          <p class="cp-card-type">Бьюти ・ Корпоративный сайт</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<div class="cp-cta-wrap">
+  <div class="cp-cta-card">
+    <h2 class="cp-cta-title">Хотите пополнить этот список своим проектом?</h2>
+    <div class="cp-form-card">
+      <h3 class="cp-form-title">Заполните данные и мы предложим готовое решение</h3>
+      <div class="cp-fields">
+        <div class="cp-field">
+          <label>Имя</label>
+          <input type="text" placeholder="Новозёрнов Александр">
+        </div>
+        <div class="cp-field">
+          <label>Телефон</label>
+          <input type="tel" placeholder="+7 (987) 654-32-10">
+        </div>
+        <div class="cp-field">
+          <label>Комментарий</label>
+          <textarea placeholder="Нужен классный сайт для автосервиса, сделайте как вы умеете"></textarea>
+        </div>
+      </div>
+      <p class="cp-privacy">Отправляя данную форму вы соглашаетесь<br>с политикой конфиденциальности</p>
+      <button class="cp-btn">Обсудить проект</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo"><img src="assets/icons/logo-footer.png" alt="Подписайт"></div>
+      <div class="footer-links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Публичная оферта</a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-col" style="width:214px;">
+        <p class="footer-col-title">Наши тарифы</p>
+        <div class="footer-divider"></div>
+        <div class="footer-col-items">
+          <a href="index.html#plans">Лендинг</a>
+          <a href="index.html#plans">Корпоративный сайт</a>
+        </div>
+      </div>
+      <div class="footer-col" style="width:440px;">
+        <p class="footer-col-title">Контакты</p>
+        <div class="footer-divider"></div>
+        <div class="footer-col-items">
+          <a href="tel:+79876543210">8 (987) 654-32-10</a>
+          <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

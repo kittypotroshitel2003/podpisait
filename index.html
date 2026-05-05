@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подписайт — Современный сервис <br> сайтов по подписке</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="header">
+  <div class="header-inner">
+    <a class="header-logo" href="#"><img src="assets/icons/logo-header.png" alt="Подписайт"></a>
+
+    <nav class="header-nav">
+      <a href="#why">выгода</a>
+      <a href="#plans">тарифы</a>
+      <a href="#sale">акции</a>
+      <a href="#faq">вопросы</a>
+      <a href="#cases">кейсы</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn-contact" href="tel:+79876543210">
+        <span class="btn-contact-text">Связаться</span>
+        <span class="btn-contact-phone-wrap">
+          <img class="icon" src="assets/icons/calling.svg" alt="">
+        </span>
+      </a>
+      <a class="btn-login" href="#">Войти</a>
+      <button class="header-burger" id="headerBurger" aria-label="Меню" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ MOBILE MENU ═══════════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-topbar">
+    <a class="mobile-menu-logo" href="#"><img src="assets/icons/logo-header.png" alt="Подписайт"></a>
+    <button class="mobile-menu-close-btn" onclick="closeMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-card">
+    <div class="mobile-menu-nav-group">
+      <p class="mobile-menu-label">навигация</p>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-links">
+        <a href="#why" onclick="closeMobileMenu()">выгода</a>
+        <a href="#sale" onclick="closeMobileMenu()">акции</a>
+        <a href="#plans" onclick="closeMobileMenu()">тарифы</a>
+        <a href="#faq" onclick="closeMobileMenu()">вопросы</a>
+        <a href="#addons" onclick="closeMobileMenu()">доп. услуги</a>
+        <a href="cases.html" onclick="closeMobileMenu()">кейсы</a>
+      </div>
+    </div>
+    <div class="mobile-menu-nav-group">
+      <p class="mobile-menu-label">контакты</p>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-contacts">
+        <a href="#">Telegram</a>
+        <a href="tel:+79876543210">8 (987) 654-32-10</a>
+        <a href="#">WhatsApp</a>
+        <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+      </div>
+    </div>
+    <div class="mobile-menu-actions">
+      <a class="btn-contact" href="tel:+79876543210">
+        <span class="btn-contact-text">Связаться</span>
+        <span class="btn-contact-phone-wrap"><img class="icon" src="assets/icons/calling.svg" alt=""></span>
+      </a>
+      <a class="btn-login mobile-menu-login" href="#">Войти</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-section">
+  <div class="hero-inner">
+
+    <!-- Left column -->
+    <div class="hero-left">
+
+      <!-- Top: gradient card -->
+      <div class="hero-gradient-card">
+        <h1>Современный сервис <br>сайтов по подписке</h1>
+      </div>
+
+      <!-- Bottom: two small cards -->
+      <div class="hero-cards-row">
+        <div class="hero-small-card">
+          <h3>Быстрый запуск<br> до 30 дней</h3>
+          <p>Разработаем и запустим сайт со скоростью света</p>
+          <img class="card-img" src="assets/images/fast-launch.png" alt="">
+        </div>
+        <div class="hero-small-card">
+          <h3>Обновление контента</h3>
+          <p>Обновим информацию на сайте, когда это нужно</p>
+          <img class="card-img1" src="assets/images/content-update.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: main pricing card -->
+    <div class="hero-main-card" id="heroMainCard">
+
+      <h2>Получи сайт всего за 9900₽/мес.</h2>
+      <div class="subtitle">Сайт под ключ<br>+ полная тех. поддержка</div>
+      <a class="btn-orange" href="#cta">Оформить подписку</a>
+      <img class="hero-phone-img" src="assets/images/hero-phone.png" alt="">
+      <div class="arrow-btn" id="heroArrowNext" onclick="heroGoToSlide(1)">
+        <img src="assets/icons/ellipse-btn.png" alt="">
+      </div>
+
+      <!-- Slide 2 overlay -->
+      <div class="hero-slide-2" id="heroSlide2">
+        <img class="hero-s2-blur hero-s2-blur-1" src="assets/images/hero-s2-blur1.png" alt="">
+        <img class="hero-s2-blur hero-s2-blur-2" src="assets/images/hero-s2-blur2.png" alt="">
+        <p class="hero-s2-heading">Хочешь крутой<br>и современный сайт?</p>
+        <a class="btn-orange hero-s2-btn" href="#cta">Оформляй подписку</a>
+        <div class="hero-s2-preview">
+          <img src="assets/images/hero-s2-preview.png" alt="">
+        </div>
+        <div class="hero-s2-back" onclick="heroGoToSlide(0)">
+          <img src="assets/icons/ellipse-btn.png" alt="">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ TAGLINE ═══════════ -->
+<section class="tagline-section">
+  <p class="tagline-text">
+    Вы ведёте бизнес&nbsp;–&nbsp;<span class="tagline-gradient" id="taglineTyped"></span><span class="tagline-cursor" id="taglineCursor">|</span>
+  </p>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<div id="how" class="how-section">
+  <div class="how-card">
+
+    <!-- Left -->
+    <div class="how-left">
+      <h2>Сайт по подписке<br><span>— проще, чем кажется</span></h2>
+      <img class="how-woman-img" src="assets/images/woman-laptop.png" alt="">
+    </div>
+
+    <!-- Right: steps -->
+    <div class="how-right">
+      <div class="how-step active">
+        <span class="how-step-num">01</span>
+        <span class="how-step-title">Офомляете <br>подписку</span>
+        <p class="how-step-desc">Без крупных разовых вложений — вместо этого фиксированная сумма в месяц.</p>
+      </div>
+      <div class="how-arrow"><img src="assets/icons/arrow-down-1.png" alt=""></div>
+      <div class="how-step inactive">
+        <span class="how-step-num">02</span>
+        <span class="how-step-title">Запускаем <br> сайт</span>
+        <p class="how-step-desc">Разрабатываем сайт под ваш бизнес и быстро выводим его в работу. Без затяжной разработки на месяцы.</p>
+      </div>
+      <div class="how-arrow"><img src="assets/icons/arrow-down-2.png" alt=""></div>
+      <div class="how-step inactive">
+        <span class="how-step-num">03</span>
+        <span class="how-step-title">Ведём и <br>поддерживаем</span>
+        <p class="how-step-desc">Обновляем контент, вносим правки, устраняем ошибки. Поддержка всегда на связи — сайт не остаётся без внимания.</p>
+      </div>
+    </div>
+    <img class="how-man-img" src="assets/images/how-man.png" alt="">
+
+  </div>
+</div>
+
+<!-- ═══════════ WHY SUBSCRIPTION ═══════════ -->
+<section id="why" class="why-section">
+  <div class="why-inner">
+    <h2 class="why-heading">
+      Почему подписка
+      <span class="why-heading-word-rotator" aria-label="удобнее">
+        <span class="why-heading-word is-visible">удобнее</span>
+        <span class="why-heading-word">круче</span>
+        <span class="why-heading-word">легче</span>
+      </span>
+      разовой разработки?
+    </h2>
+
+    <!-- Block 1: Без больших вложений -->
+    <div class="why-block">
+      <div class="why-text">
+        <h3>Без больших вложений на старте</h3>
+        <p>Не нужно платить 150–300 тыс. сразу.<br> Платите фиксированно — от 9 900 ₽ в месяц.</p>
+      </div>
+       <div class="why-img-wrap why-img-wrap--savings">
+        <img class="main-bg" src="assets/images/savings-bg.png" alt="">
+        <!-- iPhone overlay -->
+           <div style="position:absolute;left:30px;bottom:-36px;width:167px;height:342px;z-index:3;">
+          <div style="position:absolute;left:9px;top:8px;width:149px;height:325px;background:#eee6ff;border-radius:20px;overflow:hidden;z-index:2;">
+            <img src="assets/images/payment-screen.png" alt="" style="position:absolute;top:70px;left:50%;transform:translateX(-50%);width:88px;height:88px;object-fit:cover;opacity:.78;">
+          <p style="position:absolute;top:163px;left:50%;transform:translateX(-50%);font-size:9.7px;font-weight:800;color:#504359;text-align:center;white-space:nowrap;letter-spacing:-.29px;">Оплата прошла успешно!</p>
+          <p style="position:absolute;top:180px;left:50%;transform:translateX(-50%);font-size:7.3px;white-space: nowrap;font-weight:500;color:rgba(159,143,191,.9);text-align:center;width:97px;line-height:1.3;">Сайт работает, обновляется <br>и развивается</p>
+          <a href="#" style="position:absolute;top:212px;left:50%;transform:translateX(-50%);background:#8249f2;color:#fff;font-size:5.7px;font-weight:800;padding:7px 11px;border-radius:100px;white-space:nowrap;text-decoration:none;display:block;text-align:center;font-family:Manrope,sans-serif;">Вернуться в личный кабинет</a>
+        </div>
+          <img src="assets/images/iphone-mockup.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;z-index:3;">
+        </div>
+        <!-- Purple payment card -->
+       
+        <!-- Piggy bank -->
+        <div style="position:absolute;right:-160px;top:-20px;width:300px;height:280px;transform:rotate(-6.27deg);z-index:1;">
+          <img src="assets/images/piggy-bank.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:bottom;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Block 2: Сопровождение (reversed) -->
+    <div class="why-block">
+ <div class="why-text">
+        <h3>Сопровождение уже включено</h3>
+        <p>Не нужно разбираться в технических деталях — мы берём это на себя. Следим за сервером, делаем резервные копии и быстро исправляем ошибки.</p>
+      </div>
+      <div class="why-img-wrap why-img-wrap--support">
+          <!-- gear bg blur -->
+          <img src="assets/images/settings-gear.png" alt="" style="position:absolute;left:35%;top:5%;width:85%;height:90%;filter:blur(8.5px);opacity:0.74;object-fit:contain;pointer-events:none;z-index:0;">
+          <!-- screen illustration (one bug) -->
+          <div style="position:absolute;left:-330px;bottom:-10px;width:870px;height:425px;transform:rotate(-6deg);z-index:1;">
+            <img src="assets/images/screen-illustration.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:bottom;opacity:.93;">
+          </div>
+          <!-- 404 badge -->
+          <div style="position:absolute;right:-25px;top:-140px;width:580px;height:350px;opacity:.88;z-index:3;">
+            <img src="assets/images/error-404.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top right;">
+          </div>
+        </div>
+      </div>
+     
+
+
+    <!-- Block 3: Поддержка -->
+    <div class="why-block">
+      <div class="why-text">
+        <h3>Поддержка всегда<br> на связи</h3>
+        <p>Не ищите каждый раз разработчиков.<br> Есть команда, которая знает и ведёт ваш сайт.</p>
+      </div>
+      <div class="why-img-wrap why-img-wrap--support">
+        <img class="main-bg" src="assets/images/support-notification.png" alt="">
+        <!-- notification card -->
+        <div class="notif-card">
+          <button class="notif-close" onclick="this.closest('.notif-card').style.display='none'">
+            <img src="assets/icons/close.png" alt="×">
+          </button>
+          <p class="notif-title">Приняли в работу👌</p>
+          <p class="notif-sub">Задача уже у команды — скоро вернёмся с ответом</p>
+          <img class="notif-img" src="assets/images/notification-card.png" alt="">
+        </div>
+        <!-- team character -->
+        <div style="position:absolute;right:-120px;top:180px;bottom:0;width:192px;height:240px;z-index:1;">
+          <img src="assets/images/team-character.png" alt="" style="width:80%;height:80%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ PLANS ═══════════ -->
+<section id="plans" class="plans-section">
+  <div class="plans-card">
+    <!-- Left -->
+    <div class="plans-left">
+      <h2>Выберите, как будем работать</h2>
+      <div class="plans-list-wrap">
+        <div class="plans-tabs-wrap">
+          <div class="tab-slider" id="tabSlider"></div>
+          <button class="plan-tab active" onclick="switchTab('landing',this)">Лендинг</button>
+          <button class="plan-tab" onclick="switchTab('corp',this)">Корпоративный сайт</button>
+        </div>
+        <!-- Лендинг -->
+        <div id="tab-landing" class="plans-tab-content active">
+          <ul class="plans-features">
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Создание одностраничного сайта</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Наполнение контентом</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Оплата серверов, сертификатов безопасности, хостинга и домена <span class="note">(в зонах .ru и .рф)</span></span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Устранение багов</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Замена контента <span class="note">(5 обращений)</span></span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Своевременная очистка кэша</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Техническая поддержка</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Резервное копирование данных</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Защита от DDOS-атак</span></li>
+          </ul>
+          <a href="#cta" class="btn-plan">Подключить за 9900 ₽ / мес</a>
+        </div>
+        <!-- Корп -->
+        <div id="tab-corp" class="plans-tab-content">
+          <ul class="plans-features">
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Создание многостраничного сайта</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Наполнение контентом</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Оплата серверов, сертификатов безопасности, хостинга и домена <span class="note">(в зонах .ru и .рф)</span></span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Устранение багов</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Замена контента <span class="note">(10 обращений)</span></span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Своевременная очистка кэша</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Техническая поддержка</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Резервное копирование данных</span></li>
+            <li><img class="tick" src="assets/icons/tick.png" alt="✓"><span class="ft">Защита от DDOS-атак</span></li>
+          </ul>
+          <a href="#cta" class="btn-plan">Подключить за 14900 ₽ / мес</a>
+        </div>
+      </div>
+    </div>
+    <!-- Right: iPhone -->
+    <div class="plans-right">
+      <div class="plans-phone-wrap">
+        <div class="plans-phone-screen">
+          <video class="plans-phone-video" id="plansVideo" autoplay muted loop playsinline>
+            <source id="plansVideoSrc" src="assets/videos/showcase.mov" type="video/mp4">
+          </video>
+        </div>
+        <img class="plans-iphone" src="assets/images/iphone-mockup.png" alt="Сайт на iPhone">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CASES ═══════════ -->
+<section id="cases" class="cases-section">
+  <h2>Наши кейсы</h2>
+  <div class="cases-grid">
+    <div class="case-item">
+      <div class="case-img-wrap"><img src="assets/images/case-evergreen.png" alt="Evergreen"></div>
+      <div>
+        <p class="case-title">Салон искусственных растений Evergreen</p>
+        <p class="case-type">Декор интерьера ・ Корпоративный сайт</p>
+      </div>
+    </div>
+    <div class="case-item">
+      <div class="case-img-wrap"><img src="assets/images/case-demokrat.png" alt="Demokrat"></div>
+      <div>
+        <p class="case-title">Стоматология Demokrat</p>
+        <p class="case-type">Медицина ・ Корпоративный сайт</p>
+      </div>
+    </div>
+    <div class="case-item">
+      <div class="case-img-wrap"><img src="assets/images/case-gaudi.png" alt="Гауди риелт"></div>
+      <div>
+        <p class="case-title">Агентство недвижимости Гауди риелт</p>
+        <p class="case-type">Недвижимость ・ Корпоративный сайт</p>
+      </div>
+    </div>
+    <div class="case-item">
+      <div class="case-img-wrap"><img src="assets/images/case-rare.png" alt="RA|RÉ"></div>
+      <div>
+        <p class="case-title">Клиника экспертной косметологии RA | RÉ</p>
+        <p class="case-type">Бьюти ・ Корпоративный сайт</p>
+      </div>
+    </div>
+  </div>
+  <div class="cases-btn-wrap">
+    <a href="cases.html" class="btn-orange-sm">Смотреть все</a>
+  </div>
+</section>
+
+<!-- ═══════════ ADDONS ═══════════ -->
+<section id="addons" class="addons-section">
+  <h2>Можно добавить</h2>
+  <div class="addons-grid">
+    <!-- Card 1: Дизайн -->
+    <div class="flip-card" style="grid-row:1;grid-column:1;">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grey">
+          <div class="flip-front-title">Дизайн</div>
+          <img class="flip-front-img" src="assets/images/addon-design.png" alt="Дизайн">
+        </div>
+        <div class="flip-card-back grey">
+          <ul class="flip-back-list">
+            <li>разработка фирменного стиля и логотипа</li>
+            <li>разработка рекламных баннеров</li>
+            <li>дизайн всплывающих окон</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2: SEO -->
+    <div class="flip-card" style="grid-row:1;grid-column:2;">
+      <div class="flip-card-inner">
+        <div class="flip-card-front purple">
+          <div class="flip-front-title">SEO-продвижение</div>
+          <img class="flip-front-img" src="assets/images/addon-seo.png" alt="SEO">
+        </div>
+        <div class="flip-card-back purple">
+          <ul class="flip-back-list">
+            <li>базовая SEO-оптимизация</li>
+            <li>настройка аналитики</li>
+            <li>SEO-сопровождение</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3: Интеграции -->
+    <div class="flip-card" style="grid-row:2;grid-column:1;">
+      <div class="flip-card-inner">
+        <div class="flip-card-front purple">
+          <div class="flip-front-title">Интеграции</div>
+          <img class="flip-front-img" src="assets/images/addon-integrations.png" alt="Интеграции">
+        </div>
+        <div class="flip-card-back purple">
+          <ul class="flip-back-list">
+            <li>подключение CRM</li>
+            <li>подключение онлайн-оплаты</li>
+            <li>интеграция с сервисами рассылок</li>
+            <li>подключение формы заявок и обратной связи</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Card 4: Копирайтинг -->
+    <div class="flip-card" style="grid-row:2;grid-column:2;">
+      <div class="flip-card-inner">
+        <div class="flip-card-front grey">
+          <div class="flip-front-title">Копирайтинг</div>
+          <img class="flip-front-img" src="assets/images/addon-copywriting.png" alt="Копирайтинг">
+        </div>
+        <div class="flip-card-back grey">
+          <ul class="flip-back-list">
+            <li>создание информационных текстов для сайта и контента</li>
+            <li>создание / правка / адаптация текстов под SEO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SALE BANNER ═══════════ -->
+<section id="sale" class="sale-section">
+  <div class="sale-card">
+    <!-- Glow effects -->
+    <div class="sale-glow-1"></div>
+    <div class="sale-glow-2"></div>
+    <!-- Info icon -->
+    <!-- Content -->
+    <h2>Уже есть сайт? Скидка 20%</h2>
+    <p>Перенесём сайт на подписку и возьмём всё на себя</p>
+    <a class="btn-orange-lg" href="#cta">Подключить со скидкой</a>
+    <!-- Decoration visuals -->
+    <img class="sale-gift-mob-blur" src="assets/images/gift-blur-mob.png" alt="">
+    <img class="sale-gift-mob-main" src="assets/images/gift-box-mob.png" alt="">
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq" class="faq-section">
+  <h2>Развеем сомнения</h2>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFaq(this)">
+        <span class="faq-q">В чём подвох? Не может быть всё так просто</span>
+        <img class="faq-icon" src="assets/icons/faq-expand.png" alt="">
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">Подвоха нет. Подписочная модель — это прозрачные условия: фиксированная оплата и гарантированная поддержка. Вы всегда знаете, что получаете, и не переплачиваете.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFaq(this)">
+        <span class="faq-q">В чём подвох? Не может быть всё так просто</span>
+        <img class="faq-icon" src="assets/icons/faq-expand.png" alt="">
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">Мы строим долгосрочные отношения с клиентами. Нам выгодно, чтобы ваш сайт работал отлично — это залог нашего сотрудничества.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFaq(this)">
+        <span class="faq-q">В чём подвох? Не может быть всё так просто</span>
+        <img class="faq-icon" src="assets/icons/faq-expand.png" alt="">
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">Мы работаем по договору, где прописаны все условия. Никаких скрытых платежей и неожиданных расходов.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFaq(this)">
+        <span class="faq-q">В чём подвох? Не может быть всё так просто</span>
+        <img class="faq-icon" src="assets/icons/faq-expand.png" alt="">
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">Если вас что-то не устраивает — вы можете отказаться от подписки. Мы стремимся к тому, чтобы вы оставались с нами добровольно, а не по обязательствам.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFaq(this)">
+        <span class="faq-q">В чём подвох? Не может быть всё так просто</span>
+        <img class="faq-icon" src="assets/icons/faq-expand.png" alt="">
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">Наш бизнес построен на доверии. Сотни клиентов уже убедились в честности нашего подхода.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFaq(this)">
+        <span class="faq-q">В чём подвох? Не может быть всё так просто</span>
+        <img class="faq-icon" src="assets/icons/faq-expand.png" alt="">
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">Всё просто — потому что мы сделали это специально. Сложные процессы остаются на нашей стороне, а вы получаете результат.</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ CTA FORM ═══════════ -->
+<section id="cta" class="cta-section">
+  <div class="cta-card">
+    <!-- Left -->
+    <div class="cta-left">
+      <h2>Всё включено — осталось только подписаться</h2>
+      <img class="cta-photo" src="assets/images/team-photo.png" alt="">
+    </div>
+    <!-- Right: form -->
+    <div class="cta-form-card">
+      <h3>Заполните данные и мы предложим готовое решение</h3>
+      <div class="form-fields">
+        <div class="form-field">
+          <label>Имя</label>
+          <input type="text" placeholder="Новозёрнов Александр">
+        </div>
+        <div class="form-field">
+          <label>Телефон</label>
+          <input type="tel" placeholder="+7 (987) 654-32-10">
+        </div>
+        <div class="form-field">
+          <label>Комментарий</label>
+          <textarea placeholder="Нужен классный сайт для автосервиса, сделайте как вы умеете"></textarea>
+        </div>
+      </div>
+      <p class="form-privacy">Отправляя данную форму вы соглашаетесь<br>с политикой конфиденциальности</p>
+      <button class="btn-purple">Обсудить проект</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo"><img src="assets/icons/logo-footer.png" alt="Подписайт"></div>
+      <div class="footer-links">
+        <a href="#" onclick="openModal('modalPrivacy');return false;">Политика конфиденциальности</a>
+        <a href="#" onclick="openModal('modalOffer');return false;">Публичная оферта</a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-col" style="width:214px;">
+        <p class="footer-col-title">Наши тарифы</p>
+        <div class="footer-divider"></div>
+        <div class="footer-col-items">
+          <a href="#plans">Лендинг</a>
+          <a href="#plans">Корпоративный сайт</a>
+        </div>
+      </div>
+      <div class="footer-col" style="width:440px;">
+        <p class="footer-col-title">Контакты</p>
+        <div class="footer-divider"></div>
+        <div class="footer-col-items">
+          <a href="tel:+79876543210">8 (987) 654-32-10</a>
+          <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ MODAL: PRIVACY POLICY ═══════════ -->
+<div class="modal-overlay" id="modalPrivacy" onclick="if(event.target===this)closeModal('modalPrivacy')">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('modalPrivacy')"><img src="assets/icons/close.png" alt="×"></button>
+    <h2 class="modal-title">Политика конфиденциальности</h2>
+    <div class="modal-text">
+      <p><b>1. Общие положения</b></p>
+      <p>1.1. Настоящая Политика конфиденциальности действует в отношении всей информации, которую сайт https://podpisait.ru (далее — Сайт) может получить о пользователе во время использования сайта, его сервисов, программ и продуктов.</p>
+      <p>1.2. Пользователь выражает согласие с условиями настоящей Политики, начиная использовать Сайт. В случае несогласия с условиями Политики пользователь должен прекратить использование Сайта.</p>
+      <p>1.3. Оператор обработки персональных данных — Индивидуальный предприниматель Оганян Армен Аркадиевич, адрес электронной почты: info@podpisait.ru.</p>
+      <p><b>2. Персональные данные, обрабатываемые Оператором</b></p>
+      <p>2.1. Оператор может обрабатывать следующие категории персональных данных: ФИО; адрес электронной почты; номер телефона; иные данные, которые пользователь указывает в формах обратной связи.</p>
+      <p>2.2. Также могут автоматически собираться обезличенные данные с использованием интернет-статистики (например, Google Analytics, Яндекс Метрика и др.).</p>
+      <p><b>3. Цели сбора персональных данных</b></p>
+      <p>3.1. Персональные данные обрабатываются в целях: обратной связи с пользователем; предоставления запрошенной информации, услуг; улучшения качества работы Сайта; направления уведомлений рекламного и информационного характера (при наличии согласия).</p>
+      <p><b>4. Правовые основания обработки</b></p>
+      <p>4.1. Персональные данные обрабатываются на основании: статьи 6 Федерального закона № 152-ФЗ «О персональных данных»; согласия пользователя, выраженного через формы Сайта.</p>
+      <p><b>5. Порядок сбора, хранения и передачи данных</b></p>
+      <p>5.1. Оператор обеспечивает безопасность персональных данных в соответствии с требованиями законодательства.</p>
+      <p>5.2. Обработка осуществляется с использованием автоматизированных и неавтоматизированных средств.</p>
+      <p>5.3. Персональные данные не передаются третьим лицам без согласия пользователя, за исключением случаев, предусмотренных законом.</p>
+      <p><b>6. Права пользователя</b></p>
+      <p>Пользователь имеет право: запрашивать информацию о своих персональных данных; требовать уточнения, блокировки или удаления своих данных; отзывать согласие на обработку персональных данных. Обращения направляются по адресу: info@podpisait.ru.</p>
+      <p><b>7. Использование cookies</b></p>
+      <p>Сайт может использовать cookies и аналогичные технологии для улучшения пользовательского опыта. Пользователь может отключить cookies в настройках своего браузера.</p>
+      <p><b>8. Изменения Политики</b></p>
+      <p>8.1. Оператор вправе изменять настоящую Политику в любое время. Изменения вступают в силу с момента публикации новой редакции на Сайте. Актуальная версия всегда доступна по адресу: https://podpisait.ru.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MODAL: PUBLIC OFFER ═══════════ -->
+<div class="modal-overlay" id="modalOffer" onclick="if(event.target===this)closeModal('modalOffer')">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('modalOffer')"><img src="assets/icons/close.png" alt="×"></button>
+    <h2 class="modal-title">Лицензионное соглашение с пользователем сайта</h2>
+    <div class="modal-text">
+      <p>Индивидуальный предприниматель ИП Оганян А.А., именуемый(ая) в дальнейшем Правообладатель, адресует настоящее Соглашение следующему лицу (лицам): пользователи сайта https://podpisait.ru (далее — Пользователь). Лицо, которому адресовано Соглашение, заключает Соглашение, полностью и безоговорочно соглашаясь со всеми его условиями.</p>
+      <p><b>1. Термины</b></p>
+      <p>1.1.1. Контент — все объекты, доступные на Сайте, в том числе элементы дизайна, текст, графические изображения, иллюстрации, видео, программы для ЭВМ, базы данных, музыка, звуки и другие объекты.</p>
+      <p>1.1.2. Сайт — автоматизированная информационная система, доступная в сети Интернет по адресу https://podpisait.ru.</p>
+      <p><b>2. Предмет Соглашения</b></p>
+      <p>2.1. Соглашение определяет порядок и условия использования Сайта по адресу: https://podpisait.ru. В предмет Соглашения входят все функции и сервисы Сайта, а также любое их развитие или добавление новых.</p>
+      <p>2.2. Правообладатель гарантирует, что он является правообладателем исключительных прав на Сайт.</p>
+      <p><b>3. Принятие Соглашения</b></p>
+      <p>3.1. Соглашение считается заключённым, если Пользователь проставил отметку о согласии с текстом Соглашения.</p>
+      <p>3.2. Совершая действия по принятию оферты, Пользователь подтверждает своё полное и безоговорочное согласие со всеми условиями настоящего Соглашения.</p>
+      <p>3.3. Настоящая Оферта действует с момента её опубликования до дня, следующего за днём опубликования Правообладателем извещения о прекращении действия оферты.</p>
+      <p>3.4. Условия Соглашения могут быть изменены Правообладателем в любое время путём опубликования изменений по адресу: https://podpisait.ru.</p>
+      <p><b>4. Права и обязанности сторон</b></p>
+      <p>4.1. Правообладатель обязуется обеспечить конфиденциальность и защиту информации о Пользователе и консультировать Пользователя по всем вопросам, касающимся использования Сайта.</p>
+      <p>4.2. Пользователь обязуется использовать Сайт только в пределах прав, предусмотренных Соглашением; не воспроизводить, не модифицировать, не распространять Сайт; не использовать автоматизированные скрипты для сбора информации без разрешения.</p>
+      <p><b>5. Условия Лицензии Пользователя</b></p>
+      <p>5.1. Пользователю предоставляется Лицензия на использование Сайта в объёме и порядке, установленном Соглашением, без права предоставления сублицензий.</p>
+      <p>5.2. Лицензия предусматривает реализацию доступного функционала Сайта. Никакие иные права Пользователю не предоставляются.</p>
+      <p><b>6. Обработка персональных данных</b></p>
+      <p>6.1. Персональные данные обрабатываются при условии согласия субъекта данных или при наличии иных законных оснований.</p>
+      <p>6.2. Правообладатель гарантирует конфиденциальность персональных данных Пользователя.</p>
+      <p><b>7. Ответственность сторон</b></p>
+      <p>7.1. Стороны несут ответственность за неисполнение своих обязательств в соответствии с законодательством России.</p>
+      <p>7.2–7.5. Правообладатель не принимает на себя ответственность за соответствие Сайта целям использования, технические перебои и сохранность данных Пользователя.</p>
+      <p><b>8. Разрешение споров</b></p>
+      <p>8.1. Претензионный порядок досудебного урегулирования споров является обязательным.</p>
+      <p>8.2. Претензии направляются по адресу: info@podpisait.ru. Срок рассмотрения — 30 рабочих дней.</p>
+      <p>8.4. Споры разрешаются в суде по месту нахождения Правообладателя.</p>
+      <p><b>9. Заключительные положения</b></p>
+      <p>9.1. К отношениям Сторон по Соглашению применяется законодательство Российской Федерации.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ COOKIE BANNER ═══════════ -->
+<div class="cookie-banner" id="cookieBanner">
+  <img class="cookie-icon" src="assets/images/cookie-icon.png" alt="🍪">
+  <div class="cookie-text">
+    Мы используем <a href="#">cookies</a> для корректной работы сайта и аналитики. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием.
+  </div>
+  <button class="btn-cookie" onclick="document.getElementById('cookieBanner').classList.add('hidden')">Понятно</button>
+</div>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+      closeMobileMenu();
+    }
+  });
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('headerBurger');
+    const open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('headerBurger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Tap-to-flip for touch devices
+  if (window.matchMedia('(hover: none)').matches) {
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+  }
+
+  function toggleFaq(header) {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const tabVideos = {
+    landing: 'assets/videos/showcase.mov',
+    corp:    '' // будет добавлено в следующем запросе
+  };
+
+  function updateSlider() {
+    const slider    = document.getElementById('tabSlider');
+    const activeBtn = document.querySelector('.plan-tab.active');
+    if (!slider || !activeBtn) return;
+    slider.style.left   = activeBtn.offsetLeft   + 'px';
+    slider.style.top    = activeBtn.offsetTop    + 'px';
+    slider.style.width  = activeBtn.offsetWidth  + 'px';
+    slider.style.height = activeBtn.offsetHeight + 'px';
+  }
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.plan-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.plans-tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    updateSlider();
+    // Switch video if source exists
+    const src = tabVideos[tab];
+    if (src) {
+      const video = document.getElementById('plansVideo');
+      const source = document.getElementById('plansVideoSrc');
+      if (video && source) { source.src = src; video.load(); video.play(); }
+    }
+  }
+
+  
+  (function initHowStepsHover() {
+    const steps = Array.from(document.querySelectorAll('.how-right .how-step'));
+    const arrows = Array.from(document.querySelectorAll('.how-right .how-arrow img'));
+    if (!steps.length || !arrows.length) return;
+
+    const arrowPurple = 'assets/icons/arrow-down-1.png';
+    const arrowGrey = 'assets/icons/arrow-down-2.png';
+
+    function setActiveStep(activeIndex) {
+      steps.forEach((step, i) => {
+        const isActive = i === activeIndex;
+        step.classList.toggle('active', isActive);
+        step.classList.toggle('inactive', !isActive);
+      });
+
+      arrows.forEach((arrow, i) => {
+        // Подсветка для первого шага:
+        // первая стрелочка (между 01 и 02) фиолетовая, вторая серая.
+        if (activeIndex === 0) {
+          arrow.src = i === 0 ? arrowPurple : arrowGrey;
+        // Подсветка для второго шага:
+        // вторая стрелочка (между 02 и 03) фиолетовая, первая серая.
+        } else if (activeIndex === 1) {
+          arrow.src = i === 1 ? arrowPurple : arrowGrey;
+        // Подсветка для третьего шага:
+        // обе стрелочки серые (фиолетовая подсветка выключена).
+        } else {
+          arrow.src = arrowGrey;
+        }
+      });
+    }
+
+    steps.forEach((step, index) => {
+      step.addEventListener('mouseenter', () => setActiveStep(index));
+    });
+
+    const howRight = document.querySelector('.how-right');
+    if (howRight) {
+      howRight.addEventListener('mouseleave', () => setActiveStep(0));
+    }
+
+    // Состояние по умолчанию без наведения: активен первый шаг.
+    setActiveStep(0);
+  })();
+
+  // Инициализация слайдера после загрузки шрифтов
+  document.fonts.ready.then(() => { updateSlider(); setTimeout(updateSlider, 120); });
+  window.addEventListener('resize', updateSlider);
+  const _v = document.getElementById('plansVideo'); if (_v) _v.play().catch(()=>{});
+
+  // ── Typewriter ──────────────────────────────────────────────
+  (function initTypewriter() {
+    const typed  = document.getElementById('taglineTyped');
+    const cursor = document.getElementById('taglineCursor');
+    if (!typed || !cursor) return;
+
+    const text    = 'мы ведём ваш сайт';
+    const TYPE_MS = 58;
+    const ERASE_MS = 35;
+    const PAUSE_AFTER_TYPE  = 2000;
+    const PAUSE_AFTER_ERASE = 500;
+    let triggered = false;
+
+    function loop() {
+      let i = 0;
+
+      function typeChar() {
+        typed.textContent = text.slice(0, ++i);
+        if (i < text.length) setTimeout(typeChar, TYPE_MS);
+        else setTimeout(eraseChar, PAUSE_AFTER_TYPE);
+      }
+
+      function eraseChar() {
+        typed.textContent = text.slice(0, --i);
+        if (i > 0) setTimeout(eraseChar, ERASE_MS);
+        else setTimeout(loop, PAUSE_AFTER_ERASE);
+      }
+
+      typeChar();
+    }
+
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !triggered) {
+        triggered = true;
+        setTimeout(loop, 150);
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(document.querySelector('.tagline-section'));
+  })();
+
+  // ── Scroll Reveal ───────────────────────────────────────────
+  (function initReveal() {
+    const groups = [
+      { sel: '.tagline-section',         stagger: 0   },
+      { sel: '.how-card',                stagger: 0   },
+      { sel: '.why-heading',             stagger: 0   },
+      { sel: '.why-block',               stagger: 120 },
+      { sel: '.plans-card',              stagger: 0   },
+      { sel: '.cases-section h2',        stagger: 0   },
+      { sel: '.cases-grid .case-item',   stagger: 80  },
+      { sel: '.cases-btn-wrap',          stagger: 0   },
+      { sel: '.addons-section h2',       stagger: 0   },
+      { sel: '.addons-grid .flip-card',  stagger: 70  },
+      { sel: '.sale-card',               stagger: 0   },
+      { sel: '.faq-section h2',          stagger: 0   },
+      { sel: '.faq-list .faq-item',      stagger: 55  },
+      { sel: '.cta-card',                stagger: 0   },
+    ];
+
+    groups.forEach(({ sel, stagger }) => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el.classList.add('reveal');
+        if (stagger && i > 0) el.dataset.revealDelay = i * stagger;
+      });
+    });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el    = entry.target;
+          const delay = +(el.dataset.revealDelay || 0);
+          setTimeout(() => el.classList.add('revealed'), delay);
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+
+  // Hero carousel
+  function heroGoToSlide(index) {
+    const card  = document.getElementById('heroMainCard');
+    const slide2 = document.getElementById('heroSlide2');
+    const arrow  = document.getElementById('heroArrowNext');
+    if (index === 1) {
+      slide2.classList.add('active');
+      card.classList.add('hero-slide2-active');
+      arrow.style.opacity = '0';
+      arrow.style.pointerEvents = 'none';
+    } else {
+      slide2.classList.remove('active');
+      card.classList.remove('hero-slide2-active');
+      arrow.style.opacity = '1';
+      arrow.style.pointerEvents = 'auto';
+    }
+  }
+
+</script>
+</body>
+</html>
