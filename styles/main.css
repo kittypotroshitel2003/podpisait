@@ -127,10 +127,28 @@ body  {
 /* ==========================================
    HERO SECTION
    ========================================== */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .hero-section {
   background: var(--purple-light);
   padding: 32px 0 40px;
   overflow: hidden;
+}
+
+.hero-gradient-card {
+  animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) both;
+}
+.hero-main-card {
+  animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) .12s both;
+}
+.hero-cards-row .hero-small-card:nth-child(1) {
+  animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) .26s both;
+}
+.hero-cards-row .hero-small-card:nth-child(2) {
+  animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) .38s both;
 }
 .hero-inner {
   max-width: 1344px;
