@@ -25,7 +25,7 @@
     </nav>
 
     <div class="header-actions">
-      <a class="btn-contact" href="tel:+79876543210">
+      <a class="btn-contact" href="tel:+79190002002">
         <span class="btn-contact-text">Связаться</span>
         <span class="btn-contact-phone-wrap">
           <img class="icon" src="assets/icons/calling.svg" alt="">
@@ -63,13 +63,13 @@
       <div class="mobile-menu-divider"></div>
       <div class="mobile-menu-contacts">
         <a href="#">Telegram</a>
-        <a href="tel:+79876543210">8 (987) 654-32-10</a>
+        <a href="tel:+79190002002">8(919)000-20-02</a>
         <a href="#">WhatsApp</a>
-        <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+        <a href="mailto:info@podpisait.ru">info@podpisait.ru</a>
       </div>
     </div>
     <div class="mobile-menu-actions">
-      <a class="btn-contact" href="tel:+79876543210">
+      <a class="btn-contact" href="tel:+79190002002">
         <span class="btn-contact-text">Связаться</span>
         <span class="btn-contact-phone-wrap"><img class="icon" src="assets/icons/calling.svg" alt=""></span>
       </a>
@@ -518,21 +518,21 @@
     <div class="cta-form-card">
       <h3>Заполните данные и мы предложим готовое решение</h3>
       <div class="form-fields">
-        <div class="form-field">
+        <div class="form-field" id="ctaNameField">
           <label>Имя</label>
-          <input type="text" placeholder="Новозёрнов Александр">
+          <input id="ctaName" type="text" placeholder="Новозёрнов Александр">
         </div>
-        <div class="form-field">
+        <div class="form-field" id="ctaPhoneField">
           <label>Телефон</label>
-          <input type="tel" placeholder="+7 (987) 654-32-10">
+          <input id="ctaPhone" type="tel" placeholder="+7 (919) 000-20-02">
         </div>
         <div class="form-field">
           <label>Комментарий</label>
-          <textarea placeholder="Нужен классный сайт для автосервиса, сделайте как вы умеете"></textarea>
+          <textarea id="ctaComment" placeholder="Нужен классный сайт для автосервиса, сделайте как вы умеете"></textarea>
         </div>
       </div>
       <p class="form-privacy">Отправляя данную форму вы соглашаетесь<br>с политикой конфиденциальности</p>
-      <button class="btn-purple">Обсудить проект</button>
+      <button class="btn-purple" onclick="submitCtaForm()">Обсудить проект</button>
     </div>
   </div>
 </section>
@@ -560,8 +560,8 @@
         <p class="footer-col-title">Контакты</p>
         <div class="footer-divider"></div>
         <div class="footer-col-items">
-          <a href="tel:+79876543210">8 (987) 654-32-10</a>
-          <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+          <a href="tel:+79190002002">8(919)000-20-02</a>
+          <a href="mailto:info@podpisait.ru">info@podpisait.ru</a>
         </div>
       </div>
     </div>
@@ -892,6 +892,89 @@
     });
   })();
 
+</script>
+
+<!-- ═══════════ FORM SUCCESS POPUP ═══════════ -->
+<div class="form-popup-overlay" id="formSuccessPopup" onclick="if(event.target===this)closeSuccessPopup()">
+  <div class="form-popup">
+    <button class="form-popup-close" onclick="closeSuccessPopup()">✕</button>
+    <p class="form-popup-title">Готово!</p>
+    <p class="form-popup-text">Спасибо за сообщение — мы уже его читаем.<br>Скоро вернёмся с ответом и обсудим детали.</p>
+    <img class="form-popup-img" src="assets/images/popup-plane.png" alt="">
+  </div>
+</div>
+
+<script>
+// ── Telegram config ──────────────────────────────────────────────────────
+const TG_TOKEN = 'YOUR_BOT_TOKEN'; // Вставьте токен бота от @BotFather
+const TG_CHAT  = '@podpisait';     // Username канала/группы
+
+function isValidPhone(p) {
+  return p.replace(/\D/g, '').length >= 10;
+}
+
+function setFieldError(fieldEl, msg) {
+  fieldEl.classList.add('error');
+  let e = fieldEl.querySelector('.field-error-msg');
+  if (!e) { e = document.createElement('p'); e.className = 'field-error-msg'; fieldEl.appendChild(e); }
+  e.textContent = msg;
+}
+
+function clearFieldError(fieldEl) {
+  fieldEl.classList.remove('error');
+  const e = fieldEl.querySelector('.field-error-msg');
+  if (e) e.remove();
+}
+
+async function sendTelegram(name, phone, comment, source) {
+  const text = `📋 <b>Новая заявка</b> (${source})\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}${comment ? '\n💬 ' + comment : ''}`;
+  try {
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({chat_id: TG_CHAT, text, parse_mode: 'HTML'})
+    });
+  } catch(e) { console.warn('Telegram error', e); }
+}
+
+function openSuccessPopup() {
+  document.getElementById('formSuccessPopup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSuccessPopup() {
+  document.getElementById('formSuccessPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+async function submitCtaForm() {
+  const nameEl  = document.getElementById('ctaName');
+  const phoneEl = document.getElementById('ctaPhone');
+  const nameField  = document.getElementById('ctaNameField');
+  const phoneField = document.getElementById('ctaPhoneField');
+  const comment = document.getElementById('ctaComment');
+
+  clearFieldError(nameField);
+  clearFieldError(phoneField);
+
+  let ok = true;
+  if (!nameEl.value.trim())              { setFieldError(nameField,  'Введите имя'); ok = false; }
+  if (!phoneEl.value.trim())             { setFieldError(phoneField, 'Введите номер телефона'); ok = false; }
+  else if (!isValidPhone(phoneEl.value)) { setFieldError(phoneField, 'Неверный формат номера'); ok = false; }
+  if (!ok) return;
+
+  await sendTelegram(nameEl.value.trim(), phoneEl.value.trim(), comment ? comment.value.trim() : '', 'podpisait.ru');
+  nameEl.value = ''; phoneEl.value = ''; if (comment) comment.value = '';
+  openSuccessPopup();
+}
+
+// Clear errors on input
+document.addEventListener('DOMContentLoaded', () => {
+  ['ctaName','ctaPhone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearFieldError(el.closest('.form-field')));
+  });
+});
 </script>
 </body>
 </html>

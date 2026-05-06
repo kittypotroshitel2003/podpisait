@@ -213,7 +213,7 @@
     </nav>
 
     <div class="header-actions">
-      <a class="btn-contact" href="tel:+79876543210">
+      <a class="btn-contact" href="tel:+79190002002">
         <span class="btn-contact-text">Связаться</span>
         <span class="btn-contact-phone-wrap">
           <img class="icon" src="assets/icons/calling.png" alt="">
@@ -244,8 +244,8 @@
       <p class="mobile-menu-label">связаться</p>
       <div class="mobile-menu-divider"></div>
       <div class="mobile-menu-links">
-        <a href="tel:+79876543210">8 (987) 654-32-10</a>
-        <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+        <a href="tel:+79190002002">8(919)000-20-02</a>
+        <a href="mailto:info@podpisait.ru">info@podpisait.ru</a>
       </div>
     </div>
   </div>
@@ -331,21 +331,21 @@ function closeMobileMenu() {
     <div class="cp-form-card">
       <h3 class="cp-form-title">Заполните данные и мы предложим готовое решение</h3>
       <div class="cp-fields">
-        <div class="cp-field">
+        <div class="cp-field" id="cpNameField">
           <label>Имя</label>
-          <input type="text" placeholder="Новозёрнов Александр">
+          <input id="cpName" type="text" placeholder="Новозёрнов Александр">
         </div>
-        <div class="cp-field">
+        <div class="cp-field" id="cpPhoneField">
           <label>Телефон</label>
-          <input type="tel" placeholder="+7 (987) 654-32-10">
+          <input id="cpPhone" type="tel" placeholder="+7 (919) 000-20-02">
         </div>
         <div class="cp-field">
           <label>Комментарий</label>
-          <textarea placeholder="Нужен классный сайт для автосервиса, сделайте как вы умеете"></textarea>
+          <textarea id="cpComment" placeholder="Нужен классный сайт для автосервиса, сделайте как вы умеете"></textarea>
         </div>
       </div>
       <p class="cp-privacy">Отправляя данную форму вы соглашаетесь<br>с политикой конфиденциальности</p>
-      <button class="cp-btn">Обсудить проект</button>
+      <button class="cp-btn" onclick="submitCpForm()">Обсудить проект</button>
     </div>
   </div>
 </div>
@@ -373,13 +373,85 @@ function closeMobileMenu() {
         <p class="footer-col-title">Контакты</p>
         <div class="footer-divider"></div>
         <div class="footer-col-items">
-          <a href="tel:+79876543210">8 (987) 654-32-10</a>
-          <a href="mailto:podpisait@mail.ru">podpisait@mail.ru</a>
+          <a href="tel:+79190002002">8(919)000-20-02</a>
+          <a href="mailto:info@podpisait.ru">info@podpisait.ru</a>
         </div>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- ═══════════ FORM SUCCESS POPUP ═══════════ -->
+<div class="form-popup-overlay" id="formSuccessPopup" onclick="if(event.target===this)closeSuccessPopup()">
+  <div class="form-popup">
+    <button class="form-popup-close" onclick="closeSuccessPopup()">✕</button>
+    <p class="form-popup-title">Готово!</p>
+    <p class="form-popup-text">Спасибо за сообщение — мы уже его читаем.<br>Скоро вернёмся с ответом и обсудим детали.</p>
+    <img class="form-popup-img" src="assets/images/popup-plane.png" alt="">
+  </div>
+</div>
+
+<style>
+.cp-field.error { background: #fff0f2; }
+.cp-field.error label { color: #e03060; }
+</style>
+
+<script>
+const TG_TOKEN = 'YOUR_BOT_TOKEN';
+const TG_CHAT  = '@podpisait';
+
+function isValidPhone(p) { return p.replace(/\D/g,'').length >= 10; }
+
+function setFieldError(el, msg) {
+  el.classList.add('error');
+  let e = el.querySelector('.field-error-msg');
+  if (!e) { e = document.createElement('p'); e.className = 'field-error-msg'; e.style.cssText = 'font-size:12px;font-weight:500;color:#e03060;letter-spacing:-.36px;margin:0 0 4px'; el.appendChild(e); }
+  e.textContent = msg;
+}
+function clearFieldError(el) {
+  el.classList.remove('error');
+  const e = el.querySelector('.field-error-msg');
+  if (e) e.remove();
+}
+function openSuccessPopup() {
+  document.getElementById('formSuccessPopup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSuccessPopup() {
+  document.getElementById('formSuccessPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+async function submitCpForm() {
+  const nameEl = document.getElementById('cpName');
+  const phoneEl = document.getElementById('cpPhone');
+  const nameField = document.getElementById('cpNameField');
+  const phoneField = document.getElementById('cpPhoneField');
+  const comment = document.getElementById('cpComment');
+
+  clearFieldError(nameField); clearFieldError(phoneField);
+  let ok = true;
+  if (!nameEl.value.trim())              { setFieldError(nameField,  'Введите имя'); ok = false; }
+  if (!phoneEl.value.trim())             { setFieldError(phoneField, 'Введите номер телефона'); ok = false; }
+  else if (!isValidPhone(phoneEl.value)) { setFieldError(phoneField, 'Неверный формат номера'); ok = false; }
+  if (!ok) return;
+
+  const text = `📋 <b>Новая заявка</b> (кейсы)\n\n👤 Имя: ${nameEl.value.trim()}\n📞 Телефон: ${phoneEl.value.trim()}${comment.value.trim() ? '\n💬 ' + comment.value.trim() : ''}`;
+  try {
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({chat_id: TG_CHAT, text, parse_mode: 'HTML'})
+    });
+  } catch(e) {}
+
+  nameEl.value = ''; phoneEl.value = ''; comment.value = '';
+  openSuccessPopup();
+}
+document.addEventListener('DOMContentLoaded', () => {
+  ['cpName','cpPhone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearFieldError(el.closest('.cp-field')));
+  });
+});
+</script>
 </body>
 </html>
