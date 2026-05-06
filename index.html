@@ -895,12 +895,21 @@
 </script>
 
 <!-- ═══════════ FORM SUCCESS POPUP ═══════════ -->
-<div class="form-popup-overlay" id="formSuccessPopup" onclick="if(event.target===this)closeSuccessPopup()">
-  <div class="form-popup">
-    <button class="form-popup-close" onclick="closeSuccessPopup()">✕</button>
-    <p class="form-popup-title">Готово!</p>
-    <p class="form-popup-text">Спасибо за сообщение — мы уже его читаем.<br>Скоро вернёмся с ответом и обсудим детали.</p>
-    <img class="form-popup-img" src="assets/images/popup-plane.png" alt="">
+<style>
+#formSuccessPopup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9000;align-items:center;justify-content:center;padding:16px}
+#formSuccessPopup .fp-card{background:#fff;border-radius:20px;padding:36px 48px;width:420px;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;position:relative}
+#formSuccessPopup .fp-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:#f5f6fa;border:none;border-radius:100px;cursor:pointer;font-size:14px;color:#737580;display:flex;align-items:center;justify-content:center}
+#formSuccessPopup .fp-close:hover{background:#e8e8e8}
+#formSuccessPopup .fp-title{font-size:24px;font-weight:800;color:#262626;letter-spacing:-.72px;text-align:center;margin:0;font-family:'Manrope',sans-serif}
+#formSuccessPopup .fp-text{font-size:16px;font-weight:500;color:#737580;letter-spacing:-.48px;text-align:center;line-height:1.5;margin:0;font-family:'Manrope',sans-serif}
+#formSuccessPopup .fp-img{width:200px;height:auto;display:block}
+</style>
+<div id="formSuccessPopup" onclick="if(event.target===this)closeSuccessPopup()">
+  <div class="fp-card">
+    <button class="fp-close" onclick="closeSuccessPopup()">✕</button>
+    <p class="fp-title">Готово!</p>
+    <p class="fp-text">Спасибо за сообщение — мы уже его читаем.<br>Скоро вернёмся с ответом и обсудим детали.</p>
+    <img class="fp-img" src="assets/images/popup-plane.png" alt="">
   </div>
 </div>
 
@@ -938,12 +947,13 @@ async function sendTelegram(name, phone, comment, source) {
 }
 
 function openSuccessPopup() {
-  document.getElementById('formSuccessPopup').classList.add('open');
+  const p = document.getElementById('formSuccessPopup');
+  p.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 
 function closeSuccessPopup() {
-  document.getElementById('formSuccessPopup').classList.remove('open');
+  document.getElementById('formSuccessPopup').style.display = 'none';
   document.body.style.overflow = '';
 }
 
