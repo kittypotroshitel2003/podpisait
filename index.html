@@ -8,6 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
+  <style>
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-gradient-card {
+      animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) both;
+    }
+    .hero-main-card {
+      animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) .12s both;
+    }
+    .hero-cards-row .hero-small-card:nth-child(1) {
+      animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) .26s both;
+    }
+    .hero-cards-row .hero-small-card:nth-child(2) {
+      animation: heroFadeUp .65s cubic-bezier(.22,1,.36,1) .38s both;
+    }
+  </style>
 </head>
 <body>
 
