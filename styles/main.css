@@ -88,7 +88,7 @@ body  {
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity .2s;
+  transition: opacity .45s cubic-bezier(.22,1,.36,1), filter .45s cubic-bezier(.22,1,.36,1);
 }
 
 .btn-contact-text {
@@ -100,7 +100,7 @@ body  {
   transform: translateX(23px); /* вправо */
 }
 
-.btn-contact:hover { opacity: .9; }
+.btn-contact:hover { opacity: .9; filter: brightness(1.18) saturate(1.1); }
 .btn-contact .icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 5px; }
 
 .btn-login {
@@ -205,25 +205,25 @@ body  {
 }
 .hero-small-card .card-img {
   position: absolute;
-  bottom: -25px;
-  right: -5px;
-  width: 210px;
+  bottom: 0;
+  right: 16px;
+  width: 175px;
   height: auto;
   object-fit: contain;
   object-position: bottom right;
-   transform: rotate(8deg);
+  transform: rotate(8deg);
   transform-origin: bottom right;
 }
 
 .card-img1 {
   position: absolute;
-  bottom: -8px;
-  right: -20px;
-  width: 260px;
+  bottom: 0;
+  right: 8px;
+  width: 175px;
   height: auto;
   object-fit: contain;
   object-position: bottom right;
-   transform: rotate(8deg);
+  transform: rotate(6deg);
   transform-origin: bottom right;
 }
 
@@ -266,12 +266,13 @@ body  {
 
 .hero-phone-img {
   position: absolute;
-  bottom: -70px;
-  right: -280px;
-  width: 850px;
+  top: 143px;
+  right: 0;
+  bottom: auto;
+  width: 334px;
   height: auto;
   object-fit: contain;
-  object-position: bottom right;
+  object-position: top right;
   z-index: 1;
 }
 .hero-decoration-img {
@@ -361,6 +362,10 @@ body  {
   right: auto !important;
   width: auto !important;
   flex-shrink: 0;
+    margin-left: auto !important;
+  margin-right: auto !important;
+  display: block; /* или inline-block */
+  text-align: center;
 }
 .hero-s2-preview {
   position: relative;
@@ -372,6 +377,7 @@ body  {
   flex: 1 1 auto;
   min-height: 0;
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  top: 70px;
 }
 .hero-s2-preview img {
   width: 100%;
@@ -934,7 +940,7 @@ body  {
   gap: 48px 12px;
   margin-bottom: 48px;
 }
-.case-item { display: flex; flex-direction: column; gap: 24px; }
+.case-item { display: flex; flex-direction: column; gap: 24px; text-decoration: none; cursor: pointer; }
 .case-img-wrap {
   background: var(--grey-bg);
   border-radius: 24px;
@@ -1517,12 +1523,12 @@ body  {
   line-height: 1.3;
 }
 .notif-img {
- display: block;
+  display: block;
   width: 100%;
   height: 140px;
   object-fit: contain;
   object-position: bottom;
-   margin-top: 0;
+  margin-top: 0;
 }
 
 .support-wrap { overflow: visible; }
@@ -1639,17 +1645,11 @@ body  {
   padding: 10px;
   flex-shrink: 0;
 }
-.header-burger span {
+.burger-icon {
+  width: 16px;
+  height: 14px;
   display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--purple);
-  border-radius: 2px;
-  transition: transform .3s, opacity .3s;
 }
-.header-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.header-burger.open span:nth-child(2) { opacity: 0; }
-.header-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ==========================================
    MOBILE MENU
@@ -1763,15 +1763,44 @@ body  {
   border-radius: 100px;
   font-size: 14px;
 }
+
+.mobile-menu-actions .btn-contact {
+  position: relative;
+  background: transparent !important;
+  border: none;
+  overflow: visible;
+  padding-right: 42px !important;
+}
+.mobile-menu-actions .btn-contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../assets/icons/btn-contact-mob.svg') center/100% 100% no-repeat;
+  z-index: 0;
+}
+.mobile-menu-actions .btn-contact > * {
+  position: relative;
+  z-index: 1;
+}
+
 .mobile-menu-card .btn-contact-text {
   display: inline !important;
   font-size: 14px;
   padding-right: 14px;
+  padding-left: 20px;
+  
 }
 .mobile-menu-card .btn-contact-phone-wrap {
   width: 42px;
   height: 42px;
   flex-shrink: 0;
+  position: absolute;
+  right: -12px;
+  top: 65%;
+  bottom: auto;
+  transform: translateY(-50%);
+  z-index: 2;
+  
 }
 
 /* ==========================================
@@ -1783,7 +1812,6 @@ body  {
   .header-burger { display: flex; }
   .header-nav { display: none; }
   .btn-login { display: none; }
-  .btn-contact-text { display: none; }
   .btn-contact {
     padding: 0;
     width: 48px;
@@ -1792,65 +1820,130 @@ body  {
     justify-content: center;
     background: var(--purple);
   }
+  .btn-contact-text { display: none; }
   .btn-contact-phone-wrap { transform: none; }
 
   /* ── HERO ── */
-  .hero-section { padding: 8px 8px 0; }
+  .hero-section {
+    margin: 0px 8px 8px;
+    padding: 16px 0;
+    border-radius: 24px;
+  }
+
   .hero-inner {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    padding: 0 16px;
+    grid-template-columns: 1fr;
+    display: grid;
     gap: 8px;
   }
+
   /* collapse hero-left so children become direct flex items */
   /* natural HTML order: gradient → cards-row → hero-main-card (correct!) */
   .hero-left { display: contents; }
   .hero-gradient-card {
+    order: 1;
     min-height: auto;
-    padding: 24px;
-    border-radius: 16px;
+    height: auto;
+    width: calc(100% - 8px);
+    padding: 48px 20px;
+    border-radius: 20px;
   }
-  .hero-gradient-card h1 {
-    font-size: 24px;
+
+    .hero-gradient-card h1 {
+    font-size: 20px;
     letter-spacing: -0.72px;
     max-width: none;
   }
-  .hero-cards-row { gap: 8px; }
-  .hero-small-card {
-    min-height: 156px;
-    padding: 20px;
-    border-radius: 16px;
-  }
-  .hero-small-card h3 { font-size: 16px; letter-spacing: -0.48px; margin-bottom: 8px; }
-  .hero-small-card p  { font-size: 10px; letter-spacing: -0.3px; }
-  .hero-small-card .card-img { width: 120px; }
-  .card-img1 { width: 130px; }
+
+
   .hero-main-card {
-    min-height: 440px;
-    padding: 24px 24px 88px;
-    border-radius: 16px;
-    overflow: visible;
+    order: 2;
+    min-height: auto;
+    padding: clamp(20px, 5vw, 28px);
+    border-radius: 20px;
   }
-  .hero-main-card h2 { font-size: 28px; letter-spacing: -0.84px; }
-  .hero-main-card .subtitle { font-size: 14px; margin-bottom: 0; }
+
+  .hero-main-card h2 {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.06;
+    margin-bottom: 12px;
+    max-width: 320px;
+  }
+
+  .hero-main-card .subtitle {
+    font-size: clamp(15px, 3.8vw, 18px);
+    margin-bottom: 18px;
+  }
+
   .hero-main-card .btn-orange {
-    position: absolute;
-    bottom: 20px;
-    left: 24px;
-    right: 24px;
-    width: auto;
-    margin-top: 0;
-    text-align: center;
+    margin-top: clamp(120px, 38vw, 190px);
+    width: 200px;
+    padding: 15px 30px; 
+    font-size: 14px;
   }
+
   .hero-phone-img {
-    width: 220px;
-    height: auto;
-    bottom: -80px;
-    right: auto;
-    left: 50%;
-    transform: translateX(-20%);
-    object-fit: contain;
-    object-position: top center;
+    top: 67px;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: calc(100% - 67px);
+    object-position: bottom right;
+  }
+
+ .hero-main-card .arrow-btn {
+    width: 30px;    /* было, например, 40px */
+    height: 30px;
+    right: 5px;
+    top: 47%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+  .hero-decoration-img {
+    width: 360px;
+    opacity: 0.35;
+    left: 52%;
+  }
+
+  .hero-cards-row {
+    order: 3;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    align-items: stretch;
+    
+  }
+
+  .hero-small-card {
+    min-height: 170px;
+    padding: clamp(16px, 4vw, 20px);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .hero-small-card h3 {
+    font-size: clamp(15px, 3.7vw, 20px);
+    line-height: 1.12;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-small-card p {
+    font-size: 10px; 
+    letter-spacing: -0.3px; 
+  }
+
+  .hero-small-card .card-img {
+    width: 90px;
+    bottom: 0;
+    right: 0;
+    top: auto;
+  }
+
+  .card-img1 {
+    width: 90px;
+    bottom: 0;
+    right: 0;
+    top: auto;
   }
 
   /* Slide 2 mobile */
@@ -1866,6 +1959,7 @@ body  {
   .hero-s2-preview {
     max-width: 227px;
     flex: 1 1 auto;
+    top: 30px;
   }
   .hero-s2-btn {
     position: relative !important;
@@ -1928,7 +2022,7 @@ body  {
   .how-step {
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+     align-items: center;
     gap: 0 8px;
     padding: 20px;
     border-radius: 12px;
@@ -1983,16 +2077,106 @@ body  {
   .why-img-wrap--support {
     height: 240px;
     border-radius: 16px;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
   .why-img-wrap > img.main-bg { border-radius: 16px; }
   .why-img-wrap .screen-main-bg {
     object-fit: contain;
     object-position: bottom center;
   }
-  /* Hide overflowing decorative elements on mobile */
-  .why-img-wrap > div,
-  .why-img-wrap .notif-card { display: none; }
+   .why-img-wrap::before,
+  .why-img-wrap::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 4;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .why-img-wrap--savings::before {
+    width: 100px;
+    height: 100px;
+    right: -18px;
+    top: -20px;
+    background-image: url('../assets/images/piggy-bank.png');
+    transform: rotate(-10deg);
+  }
+
+   .why-img-wrap--savings::after {
+    width: 150px;
+    height: 150px;
+    left: -28px;
+    top: 120px;
+    background-image: url('../assets/images/hero-person-mob.png');
+  }
+
+  
+  .why-section .why-block:nth-of-type(2) .why-img-wrap--support::before {
+    width: 150px;
+    height: 150px;
+    right: -18px;
+    top: -46px;
+    background-image: url('../assets/images/error-404.png');
+  }
+
+  .why-section .why-block:nth-of-type(2) .why-img-wrap--support::after {
+    width: 229px;
+    height: 229px;
+    left: calc(50% - 150px);
+    top: 10px;
+    background-image: url('../assets/images/screen-illustration.png');
+    transform: rotate(-6deg);
+  }
+ /* Hide original oversized decorative layers in mobile; keep compact pseudo-icons */
+  .why-img-wrap--savings > div,
+  .why-section .why-block:nth-of-type(2) .why-img-wrap--support > div,
+.why-section .why-block:nth-of-type(2) .why-img-wrap--support .notif-card {
+  display: none;
+}
+ 
+ 
+  .why-section .why-block:nth-of-type(3) .why-img-wrap--support::after {
+    width: 100px;
+    height: 100px;
+    right: -25px;
+    bottom: -26px;
+    top: 100px;
+    background-image: url('../assets/images/team-character.png');
+  }
+  
+  /* Hide original oversized decorative layers in mobile; keep compact pseudo-icons */
+  .why-img-wrap--savings > div,
+  .why-section .why-block:nth-of-type(3) .why-img-wrap--support > div,
+.why-section .why-block:nth-of-type(2) .why-img-wrap--support .notif-card {
+  display: none;
+}
+
+.why-section .why-block:nth-of-type(3) .why-img-wrap--support .notif-card {
+  display: block;
+    position: absolute;
+    left: 30px;
+    bottom: -18px;
+    z-index: 5;
+    width: 290px;
+    top: -110;
+    transform: scale(0.5);
+    transform-origin: left bottom;
+  }
+
+  .why-section .why-block:nth-of-type(3) .why-img-wrap--support .notif-card .notif-close {
+    right: 8px;
+    top: 8px;
+    left: auto;
+  }
+
+
+  /* SEO card icon tweak only (mobile, second addons card) */
+  .addons-grid .flip-card:nth-child(2) .flip-front-img {
+    max-height: 46%;
+    right: 6px;
+  }
 
   /* ── PLANS ── */
   .plans-section { padding: 40px 8px 0; }

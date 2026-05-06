@@ -33,7 +33,7 @@
       </a>
       <a class="btn-login" href="#">Войти</a>
       <button class="header-burger" id="headerBurger" aria-label="Меню" onclick="toggleMobileMenu()">
-        <span></span><span></span><span></span>
+        <img src="assets/icons/menu-burger.svg" alt="" class="burger-icon">
       </button>
     </div>
   </div>
@@ -227,11 +227,11 @@
           <!-- gear bg blur -->
           <img src="assets/images/settings-gear.png" alt="" style="position:absolute;left:35%;top:5%;width:85%;height:90%;filter:blur(8.5px);opacity:0.74;object-fit:contain;pointer-events:none;z-index:0;">
           <!-- screen illustration (one bug) -->
-          <div style="position:absolute;left:-330px;bottom:-10px;width:870px;height:425px;transform:rotate(-6deg);z-index:1;">
+          <div id="support-jar-wrap" style="position:absolute;left:-330px;bottom:-10px;width:870px;height:425px;transform:rotate(-6deg);z-index:1;">
             <img src="assets/images/screen-illustration.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:bottom;opacity:.93;">
           </div>
           <!-- 404 badge -->
-          <div style="position:absolute;right:-25px;top:-140px;width:580px;height:350px;opacity:.88;z-index:3;">
+          <div style="position:absolute;right:-70px;top:-140px;width:580px;height:350px;opacity:.88;z-index:3;">
             <img src="assets/images/error-404.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top right;">
           </div>
         </div>
@@ -328,34 +328,34 @@
 <section id="cases" class="cases-section">
   <h2>Наши кейсы</h2>
   <div class="cases-grid">
-    <div class="case-item">
+    <a class="case-item" href="https://evergreenyug.ru" target="_blank" rel="noopener">
       <div class="case-img-wrap"><img src="assets/images/case-evergreen.png" alt="Evergreen"></div>
       <div>
         <p class="case-title">Салон искусственных растений Evergreen</p>
         <p class="case-type">Декор интерьера ・ Корпоративный сайт</p>
       </div>
-    </div>
-    <div class="case-item">
+    </a>
+    <a class="case-item" href="https://demokrat-anapa.ru" target="_blank" rel="noopener">
       <div class="case-img-wrap"><img src="assets/images/case-demokrat.png" alt="Demokrat"></div>
       <div>
         <p class="case-title">Стоматология Demokrat</p>
         <p class="case-type">Медицина ・ Корпоративный сайт</p>
       </div>
-    </div>
-    <div class="case-item">
+    </a>
+    <a class="case-item" href="https://gaudirielt.ru" target="_blank" rel="noopener">
       <div class="case-img-wrap"><img src="assets/images/case-gaudi.png" alt="Гауди риелт"></div>
       <div>
         <p class="case-title">Агентство недвижимости Гауди риелт</p>
         <p class="case-type">Недвижимость ・ Корпоративный сайт</p>
       </div>
-    </div>
-    <div class="case-item">
+    </a>
+    <a class="case-item" href="https://rare-anapa.ru" target="_blank" rel="noopener">
       <div class="case-img-wrap"><img src="assets/images/case-rare.png" alt="RA|RÉ"></div>
       <div>
         <p class="case-title">Клиника экспертной косметологии RA | RÉ</p>
         <p class="case-type">Бьюти ・ Корпоративный сайт</p>
       </div>
-    </div>
+    </a>
   </div>
   <div class="cases-btn-wrap">
     <a href="cases.html" class="btn-orange-sm">Смотреть все</a>
@@ -718,7 +718,14 @@
     if (src) {
       const video = document.getElementById('plansVideo');
       const source = document.getElementById('plansVideoSrc');
-      if (video && source) { source.src = src; video.load(); video.play(); }
+      if (video && source) {
+        source.src = src;
+        video.load();
+        video.addEventListener('canplay', function handler() {
+          video.play().catch(function(){});
+          video.removeEventListener('canplay', handler);
+        });
+      }
     }
   }
 
@@ -871,6 +878,19 @@
       arrow.style.pointerEvents = 'auto';
     }
   }
+
+  // Ensure plans video autoplays without browser play button
+  (function() {
+    const v = document.getElementById('plansVideo');
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(function() {
+      document.addEventListener('click', function handler() {
+        v.play().catch(function(){});
+        document.removeEventListener('click', handler);
+      }, { once: true });
+    });
+  })();
 
 </script>
 </body>
