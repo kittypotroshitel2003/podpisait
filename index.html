@@ -932,9 +932,9 @@
 </div>
 
 <script>
-// ── Telegram config ──────────────────────────────────────────────────────
-const TG_TOKEN = 'YOUR_BOT_TOKEN'; // Вставьте токен бота от @BotFather
-const TG_CHAT  = '@podpisait';     // Username канала/группы
+// ── Email config (Web3Forms) ─────────────────────────────────────────────
+// Получить ключ: зайти на web3forms.com, ввести info@podpisait.ru
+const WEB3FORMS_KEY = '0cd3c4be-06b6-4a85-ae82-edd63e55708e';
 
 function isValidPhone(p) {
   return p.replace(/\D/g, '').length >= 10;
@@ -953,15 +953,21 @@ function clearFieldError(fieldEl) {
   if (e) e.remove();
 }
 
-async function sendTelegram(name, phone, comment, source) {
-  const text = `📋 <b>Новая заявка</b> (${source})\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}${comment ? '\n💬 ' + comment : ''}`;
-  try {
-    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({chat_id: TG_CHAT, text, parse_mode: 'HTML'})
-    });
-  } catch(e) { console.warn('Telegram error', e); }
+async function sendEmail(name, phone, comment, source) {
+  const body = `Имя: ${name}\nТелефон: ${phone}${comment ? '\nКомментарий: ' + comment : ''}`;
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify({
+      access_key: WEB3FORMS_KEY,
+      subject: `Новая заявка с ${source}`,
+      name,
+      message: body,
+      botcheck: ''
+    })
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.message || 'Ошибка отправки');
 }
 
 function openSuccessPopup() {
@@ -991,7 +997,9 @@ async function submitCtaForm() {
   else if (!isValidPhone(phoneEl.value)) { setFieldError(phoneField, 'Неверный формат номера'); ok = false; }
   if (!ok) return;
 
-  await sendTelegram(nameEl.value.trim(), phoneEl.value.trim(), comment ? comment.value.trim() : '', 'podpisait.ru');
+  try {
+    await sendEmail(nameEl.value.trim(), phoneEl.value.trim(), comment ? comment.value.trim() : '', 'podpisait.ru');
+  } catch(e) { console.warn('Email error', e); }
   nameEl.value = ''; phoneEl.value = ''; if (comment) comment.value = '';
   openSuccessPopup();
 }
