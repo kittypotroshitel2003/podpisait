@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple: #6366f1;
+    --purple-light: #e0e7ff;
+    --purple-dark: #4f46e5;
+    --orange: #f97316;
+    --orange-light: #fff7ed;
+    --gray-light: #f3f4f6;
+    --gray-medium: #9ca3af;
+    --gray-dark: #374151;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --white: #ffffff;
+    --black: #000000;
+    
+    /* Brand Colors */
+    --Brand-Purple: rgba(130, 73, 242, 1);
+    --Brand-Purple-hover: rgba(102, 43, 217, 1);
+    --Brand-Purple8: rgba(241, 235, 255, 1);
+    
+    /* Primary Colors */
+    --Primary-Black15: rgba(38, 38, 38, 1);
+    --Primary-White: rgba(255, 255, 255, 1);
+    
+    /* Greyscale Colors */
+    --Greyscale-Grey98: rgba(245, 246, 250, 1);
+    --Greyscale-Grey75: rgba(172, 175, 191, 1);
+    --Greyscale-Grey50: rgba(115, 117, 128, 1);
+    
+    /* Form Colors */
+    --form-error: rgba(250, 75, 90, 1);
+    --text-muted: rgba(0, 0, 0, 0.4);
+    
+    /* Gradient Colors */
+    --gradient-start: rgba(255, 234.6, 224.4, 1);
+    --gradient-middle: rgba(250.75, 229.5, 255, 1);
+    --gradient-end: rgba(241.4, 234.6, 255, 1);
+    
+    /* Typography */
+    --font-family-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --letter-spacing-default: -0.03em;
+    --letter-spacing-tight: -3%;
+    
+    /* Animation */
+    --animation-desktop-offset: 200px;
+    --animation-mobile-offset: 80px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-family-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    background-color: var(--white);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+button {
+    font-family: var(--font-family-primary);
+}
+
+body.nav-open {
+    overflow: hidden;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    color: var(--Primary-Black15, rgba(38, 38, 38, 1));
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 100%;
+    letter-spacing: var(--letter-spacing-default);
+    text-align: left;
+}
+
+@media (min-width: 426px) and (max-width: 615px) {
+    h1, h2 {
+        font-size: 45px;
+    }
+}
+
+
+@media (max-width: 425px) {
+    h1, h2 {
+        font-size: 36px;
+    }
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-family-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-purple {
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.btn-login {
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 10px;
+    background-color: rgba(241, 235, 255, 1);
+    color: rgba(130, 73, 242, 1);
+    font-weight: 800;
+}
+
+.btn-login:hover {
+    background-color: rgba(224, 209, 255, 1);
+    color: rgba(130, 73, 242, 1);
+}
+
+/* "Связаться" button */
+.btn-contact-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: var(--Brand-Purple);
+    color: var(--white);
+    font-family: var(--font-family-primary);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: var(--letter-spacing-default);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-contact-text:hover {
+    background-color: var(--Brand-Purple-hover);
+}
+
+.contact-chevron {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-contact-text[aria-expanded="true"] .contact-chevron {
+    transform: rotate(180deg);
+}
+
+/* Contact dropdown wrapper */
+.contact-dropdown-wrapper {
+    position: relative;
+}
+
+.contact-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0px 12px 48px rgba(19, 26, 48, 0.14);
+    padding: 10px;
+    min-width: 230px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-dropdown[hidden] {
+    display: none;
+}
+
+.contact-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--Primary-Black15);
+    font-family: var(--font-family-primary);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: var(--letter-spacing-default);
+    transition: background-color 0.15s;
+    white-space: nowrap;
+}
+
+.contact-dropdown-item:hover {
+    background-color: var(--Brand-Purple8);
+    color: var(--Brand-Purple);
+}
+
+.contact-dropdown-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--Brand-Purple);
+}
+
+/* Phone call button (circular) */
+.btn-call-phone {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--Brand-Purple);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.btn-call-phone:hover {
+    background-color: var(--Brand-Purple-hover);
+}
+
+.btn-call-phone svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.btn-orange {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.subscribers-button .btn-orange {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 23px 46px;
+    border-radius: 20px;
+    background: var(--Brand-Orange, rgba(255, 128, 64, 1));
+    margin: 0 auto;
+    color: var(--Primary-White, rgba(255, 255, 255, 1));
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 100%;
+}
+
+.btn-orange:hover {
+    background-color: #ea580c;
+}
+
+.btn-icon {
+    background-color: var(--purple-light);
+    color: var(--purple);
+    padding: 0.75rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 425px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .container {
+        padding: 0 8px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn,
+    .btn-hero,
+    .btn-login,
+    .btn-contact-text,
+    .tariff-cta-button,
+    .subscribers-button .btn-orange,
+    .subscribe-form button[type="submit"] {
+        border-radius: 10px;
+    }
+}
+
+/* Десктоп: "чистая" ширина контента 1344px, остальное — поля по бокам */
+@media (min-width: 1025px) {
+    .container {
+        max-width: calc(1344px + 40px); /* 1344px контент + 2 * 20px внутренние отступы */
+    }
+}
